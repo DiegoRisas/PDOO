@@ -38,11 +38,10 @@ public class Weapon {
     }
     
      /**
-     * @brief Método toString
+     * @brief Metodo toString
      * @return String x
      */
     public String toString(){
-        String x = null;
-        return x;
+        return "W[" + power + "," + uses + "]";
     }
 }
