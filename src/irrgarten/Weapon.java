@@ -38,6 +38,16 @@ public class Weapon {
     }
     
      /**
+     * @brief Método de instancia público que decide si un arma debe ser descartada
+     * @return true or false
+     */
+    boolean discard(){
+        Dice dado = new Dice();
+        return dado.discardElement(this.uses);
+    }
+    
+    
+     /**
      * @brief Metodo toString
      * @return String x
      */

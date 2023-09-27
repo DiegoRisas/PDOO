@@ -38,6 +38,15 @@ public class Shield {
     }
     
      /**
+     * @brief Método de instancia público que decide si un escudo debe ser descartado
+     * @return true or false
+     */
+    boolean discard(){
+        Dice dado = new Dice();
+        return dado.discardElement(this.uses);
+    }
+    
+     /**
      * @brief Metodo toString
      * @return String x
      */
