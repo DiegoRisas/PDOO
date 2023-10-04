@@ -8,6 +8,6 @@ package irrgarten;
  *
  * @author Diego
  */
-public enum ORIENTATION {
+public enum Orientation {
     VERTICAL,HORIZONTAL
 }
