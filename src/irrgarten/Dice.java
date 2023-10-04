@@ -13,9 +13,9 @@ import java.util.Random;
 public class Dice {
     
     private static int MAX_USES = 5; //(número máximo de usos de armas y escudos)
-    private static float MAX_INTELLIGENCE = 10,0; //(valor máximo para la inteligencia de jugadores y monstruos)
-    private static float MAX_STRENGTH = 10,0; //(valor máximo para la fuerza de jugadores y monstruos)
-    private static float RESURRECT_PROB = 0,3; //(probabilidad de que un jugador sea resucitado en cada turno)
+    private static float MAX_INTELLIGENCE = 10.0f; //(valor máximo para la inteligencia de jugadores y monstruos)
+    private static float MAX_STRENGTH = 10.0f; //(valor máximo para la fuerza de jugadores y monstruos)
+    private static float RESURRECT_PROB = 0.3f; //(probabilidad de que un jugador sea resucitado en cada turno)
     private static int WEAPONS_REWARD = 2; //(numero máximo de armas recibidas al ganar un combate)
     private static int SHIELDS_REWARD = 3; //(numero máximo de escudos recibidos al ganar un combate)
     private static int HEALTH_REWARD = 5; //(numero máximo de unidades de salud recibidas al ganar un combate)
@@ -23,6 +23,14 @@ public class Dice {
     private static int MAX_SHIELD = 2; //(máxima potencia de los escudos)
     
     private Random generator;
+    
+    
+    /**
+     * @brief Constructor por defecto
+     */
+    public Dice() {
+        generator = new Random();
+    }
     
      /**
      * @brief Método de instancia público que devuelve un numero de fila o columna

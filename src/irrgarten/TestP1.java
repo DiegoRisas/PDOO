@@ -9,7 +9,7 @@ public class TestP1 {
         
         ///////////////////////// Crear instancias de la clase Weapon
         Weapon weapon1 = new Weapon(10.0f, 5);
-        Weapon weapon2 = new Weapon(8.0f, 3);
+        Weapon weapon2 = new Weapon(8.0f, 1);
 
         // Usar el método attack() de las armas
         float attackPower1 = weapon1.attack();
@@ -30,6 +30,8 @@ public class TestP1 {
         
         
         /////////////////////// Crear instancias de la clase Shield
+        System.out.println("\n");           //lineaTEST
+
         Shield shield1 = new Shield(0.75f, 3);
         Shield shield2 = new Shield(0.60f, 5);
         
@@ -71,6 +73,8 @@ public class TestP1 {
         boolean discardElementResult = dice.discardElement(3);
 
         // Imprimir los resultados
+        System.out.println("\n");       //lineaTEST
+
         System.out.println("randomPostResult: " + randomPostResult);
         System.out.println("whoStartsResult: " + whoStartsResult);
         System.out.println("randomIntelligenceResult: " + randomIntelligenceResult);
@@ -85,7 +89,6 @@ public class TestP1 {
         System.out.println("intensityResult: " + intensityResult);
         System.out.println("discardElementResult: " + discardElementResult);
    
-
     }
 }
 
