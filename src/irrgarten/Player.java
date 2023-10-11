@@ -43,6 +43,8 @@ public class Player {
         this.strength = strength;
         this.health = INITIAL_HEALTH;
         this.name = "Player #" + number; // Inicializar el nombre concatenando "Player #" y el número
+        this.row = -1;
+        this.col = -1;
     }
     
     
