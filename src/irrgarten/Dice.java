@@ -22,22 +22,16 @@ public class Dice {
     private static int MAX_ATTACK = 3; //(máxima potencia de las armas)
     private static int MAX_SHIELD = 2; //(máxima potencia de los escudos)
     
-    private Random generator;
+    private static Random generator = new Random();
     
     
-    /**
-     * @brief Constructor por defecto
-     */
-    public Dice() {
-        generator = new Random();
-    }
-    
+   
      /**
      * @brief Método de instancia público que devuelve un numero de fila o columna
      * @param max Numero de filas o columnas maximo ( se numeran comenzando por el 0 )
      * @return numero de de fila o columna
      */
-    public  int randomPost (int max){
+    public static int randomPost (int max){
         return generator.nextInt(max+1);
     }
 
@@ -47,7 +41,7 @@ public class Dice {
      * @param nplayers Numero de jugadores ( se numeran comenzando por el 0 )
      * @return numero de jugador
      */
-    public  int whoStarts (int nplayers){
+    public static  int whoStarts (int nplayers){
         return generator.nextInt(nplayers+1);
     }
  
@@ -55,7 +49,7 @@ public class Dice {
      * @brief Método de instancia público que genera un numero aleatorio de inteligencia
      * @return float de inteligencia
      */
-    public float randomIntelligence(){
+    public static float randomIntelligence(){
         return generator.nextFloat() * MAX_INTELLIGENCE;
     }
  
@@ -63,7 +57,7 @@ public class Dice {
      * @brief Método de instancia público que genera un numero aleatorio de fuerza
      * @return float de fuerza
      */
-    public float randomStrength(){
+    public static float randomStrength(){
         return generator.nextFloat() * MAX_STRENGTH;
     }
     
@@ -72,7 +66,7 @@ public class Dice {
      * @brief Método de instancia público que genera un numero aleatorio y si es menor que 0.3 devuelve true.
      * @return resurrecion si o no
      */
-    public boolean resurrectPlayer(){
+    public static boolean resurrectPlayer(){
         double probabilidad = generator.nextDouble();
         return probabilidad <= RESURRECT_PROB;
     }
@@ -81,7 +75,7 @@ public class Dice {
      * @brief Método de instancia público que genera un numero aleatorio de armas
      * @return numero de armas ganadas
      */
-    public int weaponsReward(){
+    public static int weaponsReward(){
         return generator.nextInt(WEAPONS_REWARD+1);
     }
     
@@ -89,7 +83,7 @@ public class Dice {
      * @brief Método de instancia público que genera un numero aleatorio de escudos
      * @return numero de escudos ganados
      */
-    public int shieldsReward(){
+    public static int shieldsReward(){
         return generator.nextInt(SHIELDS_REWARD+1);
     }
         
@@ -97,7 +91,7 @@ public class Dice {
      * @brief Método de instancia público que genera un numero aleatorio de vida
      * @return vida ganada
      */
-    public int healthReward(){
+    public static int healthReward(){
         return generator.nextInt(HEALTH_REWARD+1);
     }    
     
@@ -105,7 +99,7 @@ public class Dice {
      * @brief Método de instancia público que genera un numero aleatorio de poder de arma
      * @return poder de arma
      */
-    public float weaponPower(){
+    public static float weaponPower(){
         return generator.nextFloat()*MAX_ATTACK;
     }
 
@@ -113,7 +107,7 @@ public class Dice {
      * @brief Método de instancia público que genera un numero aleatorio de fuerza de escudo
      * @return fuerza de escudo
      */
-    public float shieldPower(){
+    public static float shieldPower(){
         return generator.nextFloat()*MAX_SHIELD;
     }
   
@@ -121,7 +115,7 @@ public class Dice {
      * @brief Método de instancia público que genera un numero aleatorio de usos
      * @return usos a dar
      */
-    public int usesLeft(){
+    public static int usesLeft(){
         return generator.nextInt(MAX_USES+1);
     }   
     
@@ -130,7 +124,7 @@ public class Dice {
      * @param competence
      * @return competencia [0,comptence[
      */
-    public float intensity(float competence){
+    public static float intensity(float competence){
         return generator.nextFloat()*competence;
     }
     
@@ -139,7 +133,7 @@ public class Dice {
      * @param usesLeft usos que le quedan a un arma o escudo
      * @return resurrecion si o no
      */
-    public boolean discardElement(int usesLeft){
+    public static boolean discardElement(int usesLeft){
         if(usesLeft == 0) return true;
         
         double probabilidadDescarte = 1.0/ (usesLeft+1);

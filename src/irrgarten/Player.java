@@ -45,6 +45,66 @@ public class Player {
         this.name = "Player #" + number; // Inicializar el nombre concatenando "Player #" y el número
     }
     
+    
+    
+    //Metodos privados de utilidades
+    
+    
+    private void receiveWeapon(Weapon w){
+        throw new UnsupportedOperationException(); //   completar
+    }
+    
+    private void receiveShield(Shield s){
+        throw new UnsupportedOperationException(); //   completar
+    }
+    
+    private Weapon newWeapon(){
+        Weapon w = new Weapon(Dice.weaponPower(), Dice.usesLeft());
+        return w;
+    }
+    
+    private Shield newShield(){
+        Shield s = new Shield(Dice.shieldPower(), Dice.usesLeft());
+        return s;        
+    }
+    
+    private float sumWeapons(){
+         float sum = 0;
+        for (int i = 0; i < shields.size(); i++) {
+            sum += shields.get(i).protect();
+        }
+        return sum;       
+    }
+    
+    private float sumShields(){
+        float sum = 0;
+        for (int i = 0; i < weapons.size(); i++) {
+            sum += weapons.get(i).attack();
+        }
+        return sum;
+    }
+    
+    private float defensiveEnergy(){
+        return sumShields()+intelligence;
+    }
+    
+    private boolean manageHit(float receivedAttack){
+        throw new UnsupportedOperationException(); //   completar
+    }
+    
+    private void resetHits(){
+        consecutiveHits = 0;
+    }
+    
+    private void gotWounded(){
+        health-=1;
+    }
+    
+    private void incConsecutiveHits(){
+        consecutiveHits+=1;
+    }
+    
+    
     /**
      * @brief . Este método realiza las tareas asociadas a la resurrección.
      * Hace que las listas de armas y escudos sean listas vacías, que el nivel
@@ -108,7 +168,7 @@ public class Player {
      * @return 
      */
     public boolean defend(float receivedAttack){
-        
+        return manageHit(receivedAttack);
     }
     
     /**

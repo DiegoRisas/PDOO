@@ -42,8 +42,7 @@ public class Weapon {
      * @return true or false
      */
     boolean discard(){
-        Dice dado = new Dice();
-        return dado.discardElement(this.uses);
+        return Dice.discardElement(this.uses);
     }
     
     
