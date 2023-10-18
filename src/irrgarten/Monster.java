@@ -43,8 +43,7 @@ public class Monster {
      * @return ataque del monstruo
      */
     public float attack() {
-        Dice dice = new Dice(); 
-        return dice.intensity(strength);
+        return Dice.intensity(strength);
     }
     
     /**
