@@ -8,6 +8,7 @@ import static irrgarten.Directions.DOWN;
 import static irrgarten.Directions.LEFT;
 import static irrgarten.Directions.RIGHT;
 import static irrgarten.Directions.UP;
+import java.util.ArrayList;
 
 /**
  *
@@ -139,14 +140,41 @@ public class Labyrinth {
    }
    
    private Monster putPlayer2D(int oldRow, int oldCOl, int row, int col, Player player){
-        throw new UnsupportedOperationException(); //   completar
+
+       Monster output = null;
+       
+       if(canStepOn(row, col)){
+            if(posOK(oldRow, oldCOl)){
+               Player p = PlayerSquare[oldRow][oldCOl];
+               
+               if(p == player){
+                   updateOldPos(row, col);
+                   PlayerSquare[oldRow][oldCOl] = null;
+               }
+           }
+            
+           if(monsterPos(row, col)){
+               LabyrinthSquare[row][col] = COMBAT_CHAR;
+               output = MonsterSquare[row][col];
+           }else{
+               LabyrinthSquare[row][col] = player.getNumber();
+           }
+           PlayerSquare[row][col] = player;
+           player.setPos(row, col);
+       }       
+       
+       return output;
    }
    
       //Metodos publicos
 
    
-   public void spreadPlayers(Player[] players){
-        throw new UnsupportedOperationException(); //   completar
+   public void spreadPlayers(ArrayList<Player> players){
+
+       for (int i = 0; i < players.size(); i++) {
+           int[] pos = randomEmptyPos();
+           putPlayer2D(-1, -1, pos[0], pos[1], players.get(i));
+       }
    }
    
    public boolean haveAWinner(){
@@ -197,15 +225,30 @@ public class Labyrinth {
    
    
    public Monster putPlayer(Directions direction, Player player){
-        throw new UnsupportedOperationException(); //   completar
+
+       int oldRow = player.getRow();
+       int oldCol = player.getCol();
+       
+       int[] newPos = dir2Pos(oldRow, oldCol, direction);
+       
+       return putPlayer2D(oldRow, oldCol, newPos[0], newPos[1], player);
+       
    }
    
    public void addBlock(Orientation orientation, int startRow, int startCol, int length){
         throw new UnsupportedOperationException(); //   completar
    }
 
-   public Directions[] validMoves(int row, int col){
-        throw new UnsupportedOperationException(); //   completar
+   public ArrayList<Directions> validMoves(int row, int col){
+
+       ArrayList<Directions> output = new ArrayList();
+       
+       if(canStepOn(row+1, col)) output.add(Directions.DOWN);
+       if(canStepOn(row-1, col)) output.add(Directions.UP);
+       if(canStepOn(row, col+1)) output.add(Directions.RIGHT);
+       if(canStepOn(row, col-1)) output.add(Directions.LEFT);
+
+       return output;
    }
       
 }
