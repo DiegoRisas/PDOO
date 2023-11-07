@@ -65,6 +65,7 @@ public class Labyrinth {
        }
        
        LabyrinthSquare[eR][eC] = EXIT_CHAR;
+       
    }
    
    
