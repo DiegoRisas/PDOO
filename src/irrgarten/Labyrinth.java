@@ -39,14 +39,32 @@ public class Labyrinth {
     * @brief Constructor con parametros
     * @param nR numeroFilas
     * @param nC numeroColumnas
-    * @param eR Fila donde esta la casilla salida
-    * @param eC Columna donde esta la casilla salida
+    * @param eR Fila donde esta la casilla salida, tiene que ser menor a nR
+    * @param eC Columna donde esta la casilla salida, tiene que ser menor a nC
     */
    public Labyrinth(int nR, int nC, int eR, int eC){
        this.nRows= nR;
        this.nCols=nC;
-       this.exitRow=eR;
-       this.exitCol=eC;
+       
+       if(eR<nR){
+           this.exitRow=eR;
+       }else this.exitRow = nR-1;
+       
+       if(eC<nC){
+           this.exitCol = eC;
+       }else this.exitCol = nC-1;
+       
+       LabyrinthSquare = new char[nR][nC];
+       MonsterSquare = new Monster[nR][nC];
+       PlayerSquare = new Player[nR][nC];
+       
+       for (int i = 0; i < nRows; i++) {
+           for (int j = 0; j < nCols; j++) {
+               LabyrinthSquare[i][j]=EMPTY_CHAR;
+           }
+       }
+       
+       LabyrinthSquare[eR][eC] = EXIT_CHAR;
    }
    
    

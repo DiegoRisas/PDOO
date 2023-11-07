@@ -98,6 +98,61 @@ public class TestP2 {
         System.out.println("////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        
+        // Crear una instancia de la clase Labyrinth
+        Labyrinth labyrinth = new Labyrinth(5, 5, 4, 4);
+
+        // Agregar un monstruo en la posición (2, 2)
+        labyrinth.addMonster(2, 2, monster);
+
+        // Imprimir el estado actual del laberinto
+        System.out.println(labyrinth.toString());
+
+        // Mover un jugador en el laberinto (debes completar el método putPlayer)
+        //labyrinth.putPlayer(Directions.RIGHT, player);
+
+        // Imprimir el estado actual del laberinto después de mover al jugador
+        System.out.println(labyrinth.toString());
+
+        // Verificar si hay un ganador
+        if (labyrinth.haveAWinner()) {
+            System.out.println("¡El jugador ha ganado!");
+        } else {
+            System.out.println("No hay un ganador todavía.");
+        }
+
+        // Agregar un bloque en el laberinto (falta completar el método addBlock)
+        //labyrinth.addBlock(Orientation.VERTICAL, 1, 1, 3);
+
+        // Imprimir el estado actual del laberinto después de agregar un bloque
+        System.out.println(labyrinth.toString());
+
+        // Obtener los movimientos válidos para una posición (falta completar el método validMoves)
+        //Directions[] validMoves = labyrinth.validMoves(3, 3);
+        //System.out.println("Movimientos válidos desde (3, 3): " + Arrays.toString(validMoves));
+    
+        System.out.println("////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+         // Crear una instancia del juego con 4 jugadores
+        Game game = new Game(4);
+        
+                        
+        // Mostrar el estado inicial del juego
+        System.out.println(game.getGameState().toString());
+
+
+        // Verificar si el juego ha terminado
+        if (game.finished()) {
+            System.out.println("¡El juego ha terminado!");
+        }else{
+            System.out.println("¡El juego continua!");
+        }
+
+        System.out.println("////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
 
     }
 }

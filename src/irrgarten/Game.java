@@ -34,8 +34,11 @@ public class Game {
         for (int i = 0; i < nplayers; i++) {
             players.add(new Player((char) (i + '0'), Dice.randomIntelligence(), Dice.randomStrength()));
         }
-        currentPlayerIndex= Dice.whoStarts(nplayers);
+        currentPlayerIndex= Dice.whoStarts(nplayers-1);
         currentPlayer= players.get(currentPlayerIndex);
+        
+        /////////////////////
+        //System.out.println(players.toString()); 
         
         //completar inicializar monsters
         /*
@@ -67,20 +70,29 @@ public class Game {
         */
         
         
-        labyrinth = new Labyrinth(nplayers, nplayers, nplayers, nplayers);
+        labyrinth = new Labyrinth(nplayers, nplayers, nplayers-1, nplayers-1);
         
+        /*
         Player[] convertirArray = new Player[players.size()];
         convertirArray = players.toArray(convertirArray);
         labyrinth.spreadPlayers(convertirArray);
-        
+        */
         configureLabyrinth();
+        
+        log = "-";
     }
     
  
     //Metodos privados
     
     private void configureLabyrinth(){
+
+        int posMonster = Dice.randomPost(players.size()-1);
+        Monster monster = new Monster("Monster1", Dice.randomIntelligence(), Dice.randomStrength());
+        labyrinth.addMonster(posMonster, posMonster, monster); 
+        monsters.add(monster);
         
+       
     }
     
     private void nextPlayer(){
@@ -152,16 +164,18 @@ public class Game {
     
     public GameState getGameState(){
         String playersS = new String();
+        String salto = "\n";
         for (int i = 0; i < players.size(); i++) {
-            playersS += players.get(i).toString();
+            playersS += players.get(i).toString() + salto;
         }
         
         String monstersS = new String();
         for (int i = 0; i < monsters.size(); i++) {
-            monstersS += monsters.get(i).toString();
+            monstersS += monsters.get(i).toString() + salto;
         }
-        
-        return new GameState(labyrinth.toString(), playersS, monstersS, currentPlayerIndex, finished(), log);
+
+        GameState prueba = new GameState(labyrinth.toString(), playersS, monstersS, currentPlayerIndex, finished(), log);
+        return prueba;
     }
        
 }

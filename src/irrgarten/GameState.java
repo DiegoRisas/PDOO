@@ -54,6 +54,18 @@ public class GameState {
         return log;
     }
     
+    public String toString(){
+        String exit = new String();
+        exit += "Laberinto: " + this.getLabyrinth();
+        exit += "Jugadores: " + this.getPlayers();
+        exit += "Monstruos: " + this.getMonsters();
+        exit += "Jugador actual: " + this.getCurrentPlayer() + "\n";
+        exit += "¿Hay un ganador?: " + this.isWinner() + "\n";
+        exit += "Registro de eventos: " + this.getLog();
+        
+        return exit;
+    }
+    
     /*
     public static void main(String[] args) {
         // Ejemplo de uso: Crear una instancia de GameState
