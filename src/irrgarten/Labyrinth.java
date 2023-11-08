@@ -132,13 +132,13 @@ public class Labyrinth {
        int[] position = new int[2];
        
        do{
-           position[0] = Dice.randomPost(nRows);
-           position[1] = Dice.randomPost(nCols);
-       } while (emptyPos(position[0], position[1]));
+           position[0] = Dice.randomPost(nRows-1);
+           position[1] = Dice.randomPost(nCols-1);
+       } while (!emptyPos(position[0], position[1]));
        
        return position;
    }
-    ///////////////////////////////////////////////////////////////////////////////////////////// P3
+    ///////////////////////////////////////////////////////////////////////////////////////////// P3*
    private Monster putPlayer2D(int oldRow, int oldCOl, int row, int col, Player player){
 
        Monster output = null;
@@ -166,9 +166,8 @@ public class Labyrinth {
        return output;
    }
    
-      //Metodos publicos
-
    
+   //Metodos publicos
    public void spreadPlayers(ArrayList<Player> players){
 
        for (int i = 0; i < players.size(); i++) {
@@ -176,7 +175,7 @@ public class Labyrinth {
            putPlayer2D(-1, -1, pos[0], pos[1], players.get(i));
        }
    }
-    ///////////////////////////////////////////////////////////////////////////////////////////// P3
+    ///////////////////////////////////////////////////////////////////////////////////////////// *P3
 
    public boolean haveAWinner(){
         return LabyrinthSquare[exitRow][exitCol] == EXIT_CHAR && PlayerSquare[exitRow][exitCol] != null;
@@ -204,8 +203,8 @@ public class Labyrinth {
                     result += EXIT_CHAR;
                 } else if (cellChar == COMBAT_CHAR) {
                     result += COMBAT_CHAR;
-                } else {
-                    result += " ";  // Espacio para caracteres que sobren
+                } else{
+                    result += LabyrinthSquare[i][j];  // Espacio para caracteres que sobren
                 }
             }
             result += "\n";  // Nueva Linea despues de cada row
@@ -220,11 +219,11 @@ public class Labyrinth {
            MonsterSquare[row][col] = monster;
            monster.setPos(row, col);
         }else{
-           // System.out.println("\n No se ha podido guardar el monstruo en" + row + "," + col);
+            System.err.println("\n No se ha podido guardar el monstruo en" + row + "," + col);
        } 
     }
    
-    ///////////////////////////////////////////////////////////////////////////////////////////// P3
+    ///////////////////////////////////////////////////////////////////////////////////////////// P3*
    public Monster putPlayer(Directions direction, Player player){
 
        int oldRow = player.getRow();
@@ -268,5 +267,5 @@ public class Labyrinth {
 
        return output;
    }
-    ///////////////////////////////////////////////////////////////////////////////////////////// P3
+    ///////////////////////////////////////////////////////////////////////////////////////////// *P3
 }

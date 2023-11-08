@@ -46,22 +46,25 @@ public class Monster {
         return Dice.intensity(strength);
     }
     
+    ///////////////////////////////////////////////////////////////////////////////////////////// P3
     /**
      * @brief 
      * @param receivedAttack
-     * @return 
+     * @return true si el monstruo se defiende del ataque, false si no
      */
     public boolean defend(float receivedAttack){
         boolean isDead = this.dead();
-        if(!this.dead()){
+        boolean defended = true;
+        if(!isDead){
             float defensiveEnergy = Dice.intensity(intelligence);
             if(defensiveEnergy < receivedAttack){
                 this.gotWounded();
-                isDead = this.dead();
+                defended = false;
             }
         }
-        return isDead;
+        return defended;
     }
+    ///////////////////////////////////////////////////////////////////////////////////////////// P3
     
     /**
      * @brief Modificado en unica llamada de los atibutos col y row

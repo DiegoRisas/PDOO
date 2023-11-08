@@ -51,7 +51,7 @@ public class Player {
     
     //Metodos privados de utilidades
     
-    
+///////////////////////////////////////////////////////////////////////////////////////////// P3*
     private void receiveWeapon(Weapon w){
 
         for (int i = 0; i < weapons.size(); i++) {
@@ -78,6 +78,8 @@ public class Player {
         }
     }
     
+///////////////////////////////////////////////////////////////////////////////////////////// *P3
+    
     private Weapon newWeapon(){
         Weapon w = new Weapon(Dice.weaponPower(), Dice.usesLeft());
         return w;
@@ -90,16 +92,16 @@ public class Player {
     
     private float sumWeapons(){
          float sum = 0;
-        for (int i = 0; i < shields.size(); i++) {
-            sum += shields.get(i).protect();
+        for (int i = 0; i < weapons.size(); i++) {
+            sum += weapons.get(i).attack();
         }
         return sum;       
     }
     
     private float sumShields(){
         float sum = 0;
-        for (int i = 0; i < weapons.size(); i++) {
-            sum += weapons.get(i).attack();
+        for (int i = 0; i < shields.size(); i++) {
+            sum += shields.get(i).protect();
         }
         return sum;
     }
@@ -108,6 +110,7 @@ public class Player {
         return sumShields()+intelligence;
     }
     
+///////////////////////////////////////////////////////////////////////////////////////////// P3*
     private boolean manageHit(float receivedAttack){
         boolean lose;
         float defense = defensiveEnergy();
@@ -126,7 +129,8 @@ public class Player {
         
         return lose;
     }
-    
+///////////////////////////////////////////////////////////////////////////////////////////// *P3
+
     private void resetHits(){
         consecutiveHits = 0;
     }
@@ -214,6 +218,7 @@ public class Player {
         return manageHit(receivedAttack);
     }
     
+ ///////////////////////////////////////////////////////////////////////////////////////////// P3*   
     /**
      * 
      */
@@ -235,6 +240,7 @@ public class Player {
         int extraHealth = Dice.healthReward();
         health += extraHealth;
     }
+///////////////////////////////////////////////////////////////////////////////////////////// *P3
     
     /**
      * @brief Metodo toString
