@@ -148,7 +148,7 @@ public class Labyrinth {
                Player p = PlayerSquare[oldRow][oldCOl];
                
                if(p == player){
-                   updateOldPos(row, col);
+                   updateOldPos(oldRow, oldCOl);
                    PlayerSquare[oldRow][oldCOl] = null;
                }
            }
@@ -178,7 +178,7 @@ public class Labyrinth {
     ///////////////////////////////////////////////////////////////////////////////////////////// *P3
 
    public boolean haveAWinner(){
-        return LabyrinthSquare[exitRow][exitCol] == EXIT_CHAR && PlayerSquare[exitRow][exitCol] != null;
+        return LabyrinthSquare[exitRow][exitCol] != EXIT_CHAR && PlayerSquare[exitRow][exitCol] != null;
    }
    
     public String toString() {

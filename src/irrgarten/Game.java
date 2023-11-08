@@ -37,46 +37,10 @@ public class Game {
         currentPlayerIndex= Dice.whoStarts(nplayers-1);
         currentPlayer= players.get(currentPlayerIndex);
         
-        /////////////////////
-        //System.out.println(players.toString()); 
+        labyrinth = new Labyrinth(nplayers+3, nplayers+3, nplayers+2, nplayers+2);
         
-        //completar inicializar monsters
-        /*
-            Para inicializar el atributo contenedor de monstruos y configurar adecuadamente el juego, puedes seguir estos pasos en el constructor de la clase Game:
-
-            Inicializa el atributo monsters. Para esto, puedes crear instancias de la clase Monster y agregarlas al ArrayList monsters. El número de monstruos a
-            crear depende de tu lógica de juego. Asumiremos que deseas crear un monstruo por cada jugador:
-
-            for (int i = 0; i < nplayers; i++) {
-                monsters.add(new Monster("Monster " + i, Dice.randomIntelligence(), Dice.randomStrength()));
-            }
+        labyrinth.spreadPlayers(players);
         
-            Luego, crea una instancia del laberinto labyrinth con las dimensiones adecuadas y otros parámetros que necesites. Asumiremos que nplayers se
-            utiliza para definir las dimensiones del laberinto. Por ejemplo:
-
-            labyrinth = new Labyrinth(nplayers, nplayers);
-        
-            Distribuye a los jugadores por el laberinto. Puedes crear un arreglo Player[] a partir de la lista de jugadores y luego pasar este arreglo al
-            método spreadPlayers del laberinto. Asumiremos que la clase Labyrinth tiene un método spreadPlayers que acepta un arreglo de jugadores como argumento:
-
-            Player[] playerArray = new Player[players.size()];
-            playerArray = players.toArray(playerArray);
-            labyrinth.spreadPlayers(playerArray);
-        
-            Finalmente, llama al método configureLabyrinth si es necesario para realizar alguna configuración adicional del laberinto. Este método debería
-            ser implementado de acuerdo a tus requerimientos.
-            Con estos pasos, habrás inicializado los contenedores de monstruos y jugadores, creado un laberinto y distribuido a los jugadores en el laberinto,
-            lo que proporcionará un estado inicial para el juego. Asegúrate de ajustar los valores iniciales según tus necesidades específicas de juego.
-        */
-        
-        
-        labyrinth = new Labyrinth(nplayers, nplayers, nplayers-1, nplayers-1);
-        
-        /*
-        Player[] convertirArray = new Player[players.size()];
-        convertirArray = players.toArray(convertirArray);
-        labyrinth.spreadPlayers(convertirArray);
-        */
         configureLabyrinth();
         
         log = "-";
@@ -86,21 +50,34 @@ public class Game {
     //Metodos privados
     
     private void configureLabyrinth(){
+        int nMonstersYBlocks = players.size()/2;
+        for (int i = 0; i < nMonstersYBlocks; i++) {
+            int posMonsterrow = Dice.randomPost(players.size()+2);
+            int posMonstercol = Dice.randomPost(players.size()+2);
 
-        int posMonster = Dice.randomPost(players.size()-1);
-        Monster monster = new Monster("Monster1", Dice.randomIntelligence(), Dice.randomStrength());
-        labyrinth.addMonster(posMonster, posMonster, monster); 
-        monsters.add(monster);
+            Monster monster = new Monster("Monster1", Dice.randomIntelligence(), Dice.randomStrength());
+            labyrinth.addMonster(posMonsterrow, posMonstercol, monster); 
+            monsters.add(monster);
+        }
         
-       
+        for (int i = 0; i < nMonstersYBlocks; i++) {
+            int posBr = Dice.randomPost(players.size()+2);
+            int posBc = Dice.randomPost(players.size()+2);
+            labyrinth.addBlock(Orientation.HORIZONTAL, posBr, posBc, 2);
+        }
+        
     }
     
     private void nextPlayer(){
-        currentPlayerIndex++;
+        if(currentPlayerIndex + 1 >= players.size()){
+            currentPlayerIndex = 0;
+        }else{
+            currentPlayerIndex++;
+        }
         currentPlayer = players.get(currentPlayerIndex);
     }
     
-    ///////////////////////////////////////////////////////////////////////////////////////////// P3
+    ///////////////////////////////////////////////////////////////////////////////////////////// P3*
     private Directions actualDirection(Directions preferredDirection){
         
         int currentRow = currentPlayer.getRow();
@@ -158,7 +135,7 @@ public class Game {
             logPlayerSkipTurn();
         }
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////// P3
+    ///////////////////////////////////////////////////////////////////////////////////////////// *P3
     
     private void logPlayerWon(){
         String message = "El jugador " + currentPlayerIndex + " ha ganado el combate.";
@@ -198,10 +175,16 @@ public class Game {
     
     //Metodos publicos
 
+    /////////
+    public Labyrinth getLabyrinth(){
+        return this.labyrinth;
+    }
+    ////////
+    
     public boolean finished(){
         return labyrinth.haveAWinner();
     }
-      ///////////////////////////////////////////////////////////////////////////////////////////// P3
+      ///////////////////////////////////////////////////////////////////////////////////////////// P3*
   
     public boolean nextStep(Directions preferredDirection){
 
@@ -229,7 +212,7 @@ public class Game {
         
         return endGame;
     }
-        ///////////////////////////////////////////////////////////////////////////////////////////// P3
+        ///////////////////////////////////////////////////////////////////////////////////////////// *P3
 
     public GameState getGameState(){
         String playersS = new String();

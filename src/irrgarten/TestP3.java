@@ -183,6 +183,33 @@ public class TestP3 {
         System.out.println("////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
     }
     
+    public static void pruebaGame(){
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         // Crear una instancia del juego con 4 jugadores
+        Game game = new Game(4);
+        
+                        
+        // Mostrar el estado inicial del juego
+        System.out.println(game.getGameState().toString());
+
+        boolean finished;
+        do{
+            finished = game.nextStep(Directions.RIGHT);
+            System.out.println(game.getLabyrinth().toString());
+        }while(!finished);
+        
+        
+        // Verificar si el juego ha terminado
+        if (finished) {
+            System.out.println("¡El juego ha terminado!");
+        }else{
+            System.out.println("¡El juego continua!");
+        }
+
+        System.out.println("////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////"); 
+    }
+    
     public static void main(String[] args) {
         //Probar instancias de Monster, Player, Labyrinth y Game.
        
@@ -192,25 +219,6 @@ public class TestP3 {
         
         //pruebaLabyrinth();
        
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /*
-
-         // Crear una instancia del juego con 4 jugadores
-        Game game = new Game(4);
-        
-                        
-        // Mostrar el estado inicial del juego
-        System.out.println(game.getGameState().toString());
-
-
-        // Verificar si el juego ha terminado
-        if (game.finished()) {
-            System.out.println("¡El juego ha terminado!");
-        }else{
-            System.out.println("¡El juego continua!");
-        }
-
-        System.out.println("////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
-º   */
+        pruebaGame();
     }
 }
