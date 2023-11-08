@@ -138,7 +138,7 @@ public class Labyrinth {
        
        return position;
    }
-   
+    ///////////////////////////////////////////////////////////////////////////////////////////// P3
    private Monster putPlayer2D(int oldRow, int oldCOl, int row, int col, Player player){
 
        Monster output = null;
@@ -176,7 +176,8 @@ public class Labyrinth {
            putPlayer2D(-1, -1, pos[0], pos[1], players.get(i));
        }
    }
-   
+    ///////////////////////////////////////////////////////////////////////////////////////////// P3
+
    public boolean haveAWinner(){
         return LabyrinthSquare[exitRow][exitCol] == EXIT_CHAR && PlayerSquare[exitRow][exitCol] != null;
    }
@@ -220,10 +221,10 @@ public class Labyrinth {
            monster.setPos(row, col);
         }else{
            // System.out.println("\n No se ha podido guardar el monstruo en" + row + "," + col);
-       }
+       } 
     }
    
-   
+    ///////////////////////////////////////////////////////////////////////////////////////////// P3
    public Monster putPlayer(Directions direction, Player player){
 
        int oldRow = player.getRow();
@@ -234,9 +235,26 @@ public class Labyrinth {
        return putPlayer2D(oldRow, oldCol, newPos[0], newPos[1], player);
        
    }
-   
+
    public void addBlock(Orientation orientation, int startRow, int startCol, int length){
-        throw new UnsupportedOperationException(); //   completar
+       int row, col, incRow, incCol;
+        if(orientation == Orientation.VERTICAL){
+            incRow = 1;
+            incCol = 0;
+        }else{
+            incRow = 0;
+            incCol = 1;
+        }
+        
+        row = startRow;
+        col = startCol;
+        
+        while(posOK(row, col) && emptyPos(row, col) && (length > 0)){
+            LabyrinthSquare[row][col] = BLOCK_CHAR;
+            length -= 1;
+            row += incRow;
+            col += incCol;
+        }
    }
 
    public ArrayList<Directions> validMoves(int row, int col){
@@ -250,5 +268,5 @@ public class Labyrinth {
 
        return output;
    }
-      
+    ///////////////////////////////////////////////////////////////////////////////////////////// P3
 }
