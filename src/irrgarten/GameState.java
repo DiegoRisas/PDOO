@@ -56,13 +56,13 @@ public class GameState {
     
     public String toString(){
         String exit = new String();
-        exit += "Laberinto: " + this.getLabyrinth();
         exit += "Jugadores: " + this.getPlayers();
         exit += "Monstruos: " + this.getMonsters();
         exit += "Jugador actual: " + this.getCurrentPlayer() + "\n";
         exit += "¿Hay un ganador?: " + this.isWinner() + "\n";
         exit += "Registro de eventos: " + this.getLog();
-        
+        exit += "Laberinto: " + this.getLabyrinth();
+       
         return exit;
     }
     

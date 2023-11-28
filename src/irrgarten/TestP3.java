@@ -211,14 +211,18 @@ public class TestP3 {
     }
     
     public static void main(String[] args) {
+        Boolean DEBUG = false;
+
         //Probar instancias de Monster, Player, Labyrinth y Game.
-       
-        //pruebaMonster();
+        if(DEBUG){
+            pruebaMonster();
         
-        //pruebaPlayer();
-        
-        //pruebaLabyrinth();
-       
-        pruebaGame();
+            pruebaPlayer();
+
+            pruebaLabyrinth();
+
+            pruebaGame();          
+        }
+
     }
 }

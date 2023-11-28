@@ -5,6 +5,7 @@
 package irrgarten;
 
 import java.util.Random;
+import java.util.ArrayList;
 
 /**
  *
@@ -142,6 +143,32 @@ public class Dice {
         
         return numAleatorio <= probabilidadDescarte;
     }
+    
+    
+    ///////////////////////////////////////////////////////// P4
+     public Directions nextStep(Directions preference, ArrayList<Directions> validMoves, float intelligence) {
+        
+        Random random = new Random();
+        // Verificar si la preferencia está en las direcciones válidas
+        if (!validMoves.contains(preference)) {
+            // Si no está en las direcciones válidas, elige una al azar
+            preference = validMoves.get(random.nextInt(validMoves.size()));
+            return preference;
+        }
+
+        // Lógica para elegir la dirección final basada en la inteligencia
+        float randomValue = randomIntelligence(); // Obtener un valor aleatorio entre 0.0 y MAX_INTELLIGENCE
+        
+        if (randomValue < intelligence) {
+            // La inteligencia favorece la preferencia
+            return preference;
+        } else {
+            // La inteligencia no favorece la preferencia, elige al azar
+            Random randomValid = new Random();
+            return validMoves.get(randomValid.nextInt(validMoves.size()));
+        }
+    }
+
     
 }
     
